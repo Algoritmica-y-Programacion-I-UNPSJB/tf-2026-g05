@@ -4,8 +4,8 @@
 **Interfaz / Modalidad:** Gráfica (SDL3) — 1 jugador vs Banca  
 
 ## Integrantes y aportes
-- Franco Sarabia
-- Leonel Luna
+- Franco Sarabia (@francosarabia67)
+- Leonel Luna (@deku-tdf)
 
 ## Reglas y alcance
 Se desarrollará una Ruleta Europea con números del 0 al 36 para un jugador contra la banca, con interfaz gráfica mediante SDL3.
