@@ -11,12 +11,8 @@
 ## 1. Integrantes y aportes
 
 - **Franco Sarabia** (@francosarabia67)
-  - Aportes: [Completar tareas realizadas].
-  - Horas aproximadas: [Completar].
 
 - **Leonel Luna** (@deku-tdf)
-  - Aportes: [Completar tareas realizadas].
-  - Horas aproximadas: [Completar].
 
 ## 2. Reglas y alcance del juego
 
@@ -56,20 +52,24 @@ gcc main.c interfaz.c ronda.c ruleta.c apuesta.c ranking.c gestion_juego.c -o ro
 
 ### Ejecución
 
-En Linux:
+En Windows, abrir una terminal en la carpeta del proyecto y ejecutar:
 
 ```bash
-./royal_roulette
+./royal_roulette.exe
 ```
 
-En Windows:
+Es necesario iniciar el programa desde la carpeta principal para que pueda cargar correctamente las imágenes ubicadas en `recursos/`.
 
-```bash
-royal_roulette.exe
-```
+### Controles del juego
 
-Es necesario ejecutar el programa desde la carpeta principal del proyecto para que pueda encontrar los recursos gráficos dentro de `recursos/`.
+- Escribir el nombre del jugador utilizando el teclado.
+- Utilizar el mouse para seleccionar las opciones del menú.
+- Seleccionar una ficha de $1, $5 o $25.
+- Hacer clic en el tablero para realizar las apuestas.
+- Presionar el botón "GIRAR RULETA" para obtener el resultado.
+- Utilizar "SIGUIENTE RONDA" para continuar la partida.
 
+  
 ## 4. Organización general del programa
 
 El proyecto está dividido en distintos módulos para separar las responsabilidades.
