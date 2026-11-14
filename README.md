@@ -1,27 +1,19 @@
-# Trabajo Integrador Final 2026 — Grupo 05
+# Trabajo Integrador Final 2026 - Grupo 05
 
-**Juego aprobado:** Ruleta  
-**Interfaz / Modalidad:** Gráfica (SDL3) — 1 jugador vs Banca  
+Juego de ruleta europea (0 a 36) para un jugador contra la banca, con interfaz gráfica desarrollada en SDL3.
 
-## Integrantes y aportes
-- Franco Sarabia (@francosarabia67)
-- Leonel Luna (@deku-tdf)
+## Dependencias
+- SDL3
+- Biblioteca matemática estándar (`math.h`)
 
-## Reglas y alcance
-Se desarrollará una Ruleta Europea con números del 0 al 36 para un jugador contra la banca, con interfaz gráfica mediante SDL3.
+## Estructura
+- `main.c`: punto de entrada
+- `interfaz.c` / `interfaz.h`: interfaz gráfica
+- `ruleta.c` / `ruleta.h`: lógica de la ruleta
+- `ronda.c` / `ronda.h`: apuestas y resolución de rondas
+- `apuesta.c` / `apuesta.h`: verificaciones de apuestas
+- `ranking.c` / `ranking.h`: almacenamiento y visualización del ranking
+- `gestion_juego.c` / `gestion_juego.h`: gestión del juego por consola
+- `recursos/`: imágenes BMP utilizadas por la interfaz
 
-El jugador comenzará con un saldo inicial de $1000. Las apuestas previstas en la propuesta son:
-
-- pleno;
-- docenas;
-- par/impar;
-- rojo/negro.
-
-## Compilación y ejecución
-<!-- Completar con los comandos de compilación y ejecución y las dependencias necesarias -->
-
-## Organización de datos y funciones
-<!-- Completar describiendo las estructuras, datos principales, funciones y flujo general del programa -->
-
-## Interfaz gráfica
-<!-- Documentar las funciones que conectan la interfaz SDL3 con la lógica del juego y, si corresponde, qué parte gráfica fue generada mediante IA -->
+El archivo `ranking.dat` se genera durante la ejecución y no se incluye en el repositorio.
