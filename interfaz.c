@@ -557,10 +557,11 @@ void iniciar_interfaz(void) {
     // ESTADO DE LAS PANTALLAS
     int pantalla_actual = 0;
     int ranking_desde_menu = 0;
-    // 0 = bienvenida
+    // 0 = ingreso del nombre
     // 1 = reglas
     // 2 = juego
     // 3 = ranking
+    // 4 = menu de bienvenida
 
     // NOMBRE DEL JUGADOR
     char nombre_jugador[50] = "";
@@ -665,56 +666,43 @@ void iniciar_interfaz(void) {
                 //       BOTONES DE BIENVENIDA
                 // ======================================
 
-                if (pantalla_actual == 0) {
+                // BOTON CONTINUAR DESPUES DE INGRESAR EL NOMBRE
+                if (pantalla_actual == 0 &&
+                    mx >= 500 && mx <= 900 && my >= 480 && my <= 535) {
 
-                    // BOTON COMENZAR
+                    if (strlen(nombre_jugador) > 0) {
+                        pantalla_actual = 4;
+                        SDL_StopTextInput(ventana);
+                    }
+                }
+
+                // OPCIONES DEL MENU DE BIENVENIDA
+                // ELSE IF evita que el mismo clic de CONTINUAR
+                // tambien active el boton JUGAR.
+                else if (pantalla_actual == 4) {
+
+                    // BOTON JUGAR
                     if (mx >= 500 && mx <= 900 && my >= 480 && my <= 535) {
 
-                        if (strlen(nombre_jugador) > 0) {
+                        iniciar_partida(&juego, nombre_jugador);
+                        valor_ficha_seleccionada = 1;
+                        cantidad_marcas = 0;
+                        saldo_mostrado = juego.saldo;
+                        pantalla_actual = 2;
 
-                            pantalla_actual = 2;
-                            SDL_StopTextInput(ventana);
-
-                            iniciar_partida(&juego, nombre_jugador);
-
-                            valor_ficha_seleccionada = 1;
-                            cantidad_marcas = 0;
-                            saldo_mostrado = juego.saldo;
-
-                            snprintf(mensaje, sizeof(mensaje),
-                                "Bienvenido a ROYAL ROULETTE.");
-                        }
+                        snprintf(mensaje, sizeof(mensaje), "Realice sus apuestas.");
                     }
-
-
                     // BOTON REGLAS
                     else if (mx >= 500 && mx <= 900 && my >= 560 && my <= 615) {
-
                         pantalla_actual = 1;
-                        SDL_StopTextInput(ventana);
                     }
-
-                    // BOTON VER RANKING
-                    else if (mx >= 500 && mx <= 900 &&
-                        my >= 640 && my <= 695) {
-
-                        pantalla_actual = 3;
-                        ranking_desde_menu = 1;
-
-                        SDL_StopTextInput(ventana);
-                    }
-
-                    // BOTON SALIR DEL JUEGO
-                    else if (mx >= 500 && mx <= 900 &&
-                        my >= 720 && my <= 775) {
-
+                    // BOTON SALIR
+                    else if (mx >= 500 && mx <= 900 && my >= 640 && my <= 695) {
                         SDL_DestroyRenderer(renderer);
                         SDL_DestroyWindow(ventana);
                         SDL_Quit();
                         return;
                     }
-
-
                 }
 
                 // BOTON VOLVER AL MENU DESDE REGLAS
@@ -722,8 +710,7 @@ void iniciar_interfaz(void) {
                     mx >= 500 && mx <= 900 &&
                     my >= 760 && my <= 815) {
 
-                    pantalla_actual = 0;
-                    SDL_StartTextInput(ventana);
+                    pantalla_actual = 4;
                 }
 
 
@@ -1265,37 +1252,49 @@ void iniciar_interfaz(void) {
 
 
         // =====================================================
-        //              PANTALLA DE BIENVENIDA
+        //              PANTALLA DE INGRESO
         // =====================================================
 
         if (pantalla_actual == 0) {
 
             dibujar_texto_destacado(renderer, "ROYAL ROULETTE", 490, 180);
-
             dibujar_texto(renderer, "INGRESE SU NOMBRE:", 540, 320);
 
-            // MARCO PARA INGRESAR EL NOMBRE
+            // CAMPO DONDE SE MUESTRA EL NOMBRE INGRESADO
             SDL_FRect campo_nombre = { 450, 360, 500, 55 };
-
             SDL_SetRenderDrawColor(renderer, 212, 175, 55, 255);
             SDL_RenderRect(renderer, &campo_nombre);
-
             dibujar_texto(renderer, nombre_jugador, 470, 380);
 
-            // BOTONES
             dibujar_boton(renderer, 500, 480, 400, 55,
-                "COMENZAR", mouse_x_actual, mouse_y_actual);
+                "CONTINUAR", mouse_x_actual, mouse_y_actual);
+        }
+
+        // =====================================================
+        //          MENU DE BIENVENIDA Y SALUDO
+        // =====================================================
+
+        if (pantalla_actual == 4) {
+
+            char saludo[100];
+            snprintf(saludo, sizeof(saludo), "BIENVENIDO, %s", nombre_jugador);
+
+            // Título principal
+            dibujar_texto_destacado(renderer, "ROYAL ROULETTE", 600, 250);
+
+            // Saludo personalizado
+            dibujar_texto_destacado(renderer, saludo, 600, 350);
+
+            // Botones del menú
+            dibujar_boton(renderer, 500, 480, 400, 55,
+                "JUGAR", mouse_x_actual, mouse_y_actual);
 
             dibujar_boton(renderer, 500, 560, 400, 55,
                 "REGLAS DEL JUEGO", mouse_x_actual, mouse_y_actual);
 
             dibujar_boton(renderer, 500, 640, 400, 55,
-                "VER RANKING", mouse_x_actual, mouse_y_actual);
-
-            dibujar_boton(renderer, 500, 720, 400, 55,
-                "SALIR DEL JUEGO", mouse_x_actual, mouse_y_actual);
+                "SALIR", mouse_x_actual, mouse_y_actual);
         }
-
 
         // =====================================================
         //                 PANTALLA DE REGLAS
