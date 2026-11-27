@@ -10,9 +10,9 @@
 
 ## 1. Integrantes y aportes
 
-- **Franco Sarabia** (@francosarabia67)
+- **Franco Sarabia** (@francosarabia67), 18 horas aproximadamente.
 
-- **Leonel Luna** (@deku-tdf)
+- **Leonel Luna** (@deku-tdf), 24 horas aproximadamente.
 
 ## 2. Reglas y alcance del juego
 
